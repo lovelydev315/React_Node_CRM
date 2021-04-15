@@ -9,7 +9,7 @@ const path = require("path");
 const helmet = require('helmet');
 const cors = require('cors');
 const { createAdmin, logout } = require("./controllers/AuthController");
-
+app.use(cors());
 // Constants
 const {
   HOST,
@@ -41,7 +41,7 @@ const mongoDBstore = new MongoDBStore({
 });
 
 // Express Bodyparser
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //default file path
@@ -65,24 +65,6 @@ app.use(
     }
   })
 );
-
-app.use(helmet())
-
-// Below corsOptions are for Local development
-const corsOptions = {
-  origin: 'http://localhost:3000',
-  credentials: true,
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
-// Below corsOptions work in deployment as Docker containers
-const corsOptionsProd = {
-  origin: 'http://localhost',
-  credentials: true,
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
-app.use(cors(corsOptions));
 
 
 router.get("/", (req, res) => res.send("HELLO FRIEND"));
