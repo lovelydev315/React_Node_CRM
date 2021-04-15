@@ -9,7 +9,13 @@ const path = require("path");
 const helmet = require('helmet');
 const cors = require('cors');
 const { createAdmin, logout } = require("./controllers/AuthController");
-app.use(cors());
+
+const corsOptions = {
+  origin: 'http://192.53.163.251:3000',
+  credentials: true,
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+app.use(cors(corsOptions));
 // Constants
 const {
   HOST,
