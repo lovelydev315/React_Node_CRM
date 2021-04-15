@@ -1,0 +1,46 @@
+{
+  "name": "mern-login-singup-component",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shawn-dsilva/mern-login-signup-component.git"
+  },
+  "author": "Shawn D'silva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shawn-dsilva/mern-login-signup-component/issues"
+  },
+  "homepage": "https://github.com/shawn-dsilva/mern-login-signup-component#readme",
+  "dependencies": {
+    "@hapi/joi": "^16.1.8",
+    "bcryptjs": "^2.4.3",
+    "bootstrap": "^4.4.1",
+    "concurrently": "^4.1.2",
+    "connect-mongodb-session": "^2.3.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-rate-limit": "^5.1.1",
+    "express-session": "^1.17.0",
+    "helmet": "^3.21.3",
+    "lodash": "^4.17.21",
+    "mongoose": "^5.9.5",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "react-cookies": "^0.1.1",
+    "react-router-dom": "^5.1.2",
+    "session-file-store": "^1.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
