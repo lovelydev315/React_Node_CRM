@@ -47,9 +47,6 @@ app.use(express.json());
 //default file path
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Morgan setup
-app.use(morgan("dev"));
-
 // Express-Session
 app.use(
   session({

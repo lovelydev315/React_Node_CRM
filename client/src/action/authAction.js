@@ -33,7 +33,8 @@ export const register = (body) => {
 export const login =  ({ email, password, type }, cb) => {
   const headers = {
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "http://192.53.163.251:5000"
     },
     withCredentials: true
   };
