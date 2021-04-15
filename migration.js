@@ -43,7 +43,7 @@ const createTestInformations = async () => {
           postal_code: '1234' + i,
           country: 'Unknown' + i,
           state: 'blaa' + i,
-          avatar: '',
+          avatar: 'avatar/a_1617347218904.jpg',
           phases: phases,
           user_state: {
             phase: i,
