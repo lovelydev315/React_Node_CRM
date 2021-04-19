@@ -46,7 +46,7 @@ const AdminHome = () => {
     return (
             <Row>
                 <Col span={4} style={{paddingLeft: "20px"}}>
-                    <Sidebar authority={authority} />
+                    <Sidebar authority={authority} selected="1"/>
                 </Col>
                 <Col span={20} className="admin-container" style={{backgroundColor: color.background}}>
                     <Row style={{marginBottom: "20px"}}>
@@ -55,8 +55,13 @@ const AdminHome = () => {
                         <Col span={10}>
                             <SearchInput />
                         </Col>
-                        <Col span={3}><Button className="admin-header-button disabled">Export</Button></Col>
-                        <Col span={3}><Button className="admin-header-button" style={{background: color.main}}>+ Add</Button></Col>
+                        <Col span={3}>
+                            {/* <Button className="admin-header-button disabled">Export</Button> */}
+                        </Col>
+                        <Col span={3}>
+                            <Button className="admin-header-button disabled">Export</Button>
+                            {/* <Button className="admin-header-button" style={{background: color.main}}>+ Add</Button> */}
+                        </Col>
                         <Col span={2}></Col>
                     </Row>
                     <Row>

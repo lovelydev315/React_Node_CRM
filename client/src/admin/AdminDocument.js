@@ -61,7 +61,7 @@ const AdminDocument = () => {
     return (
         <Row>
             <Col span={4} style={{paddingLeft: "20px"}}>
-                <Sidebar authority={authority} />
+                <Sidebar authority={authority} selected="3" />
             </Col>
             <Col span={info === -1 ? 20 : 14} className="admin-container" style={{backgroundColor: color.background}}>
                 <Row style={{marginBottom: "20px"}}>
@@ -70,8 +70,11 @@ const AdminDocument = () => {
                     <Col span={10}>
                         <SearchInput onChange={(event) => changeSearchKey(event.target.value)} />
                     </Col>
-                    <Col span={3}><Button className="admin-header-button disabled">Export</Button></Col>
-                    <Col span={3}><Button className="admin-header-button" style={{background: color.main}}>+ Add</Button></Col>
+                    <Col span={3}></Col>
+                    <Col span={3}>
+                        <Button className="admin-header-button disabled">Export</Button>
+                        {/* <Button className="admin-header-button" style={{background: color.main}}>+ Add</Button> */}
+                    </Col>
                     <Col span={2}></Col>
                 </Row>
                 <Row>
@@ -82,9 +85,9 @@ const AdminDocument = () => {
                             <Row style={{marginBottom: "20px", paddingTop:'20px'}}>
                                 <Col span={1}></Col>
                                 <Col span={16} className="admin-process-button-div">
-                                    <Button className="admin-header-button" style={{background: "#498be8a1"}}>Filter 1</Button>
+                                    {/* <Button className="admin-header-button" style={{background: "#498be8a1"}}>Filter 1</Button>
                                     <Button className="admin-header-button" style={{background: "#498be8a1", marginLeft: "20px"}}>Filter 2</Button>
-                                    <Button className="admin-header-button" style={{background: "#498be8a1", marginLeft: "20px"}}>Other</Button>
+                                    <Button className="admin-header-button" style={{background: "#498be8a1", marginLeft: "20px"}}>Other</Button> */}
                                 </Col>
                                 <Col span={4}></Col>
                                 <Col span={2} className="admin-process-button-div-right">

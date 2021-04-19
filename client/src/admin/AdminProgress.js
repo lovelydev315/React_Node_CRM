@@ -66,7 +66,7 @@ const AdminProgress = () => {
     return (
         <Row>
             <Col span={4} style={{paddingLeft: "20px"}}>
-                <Sidebar authority={authority} />
+                <Sidebar authority={authority} selected="2"/>
             </Col>
             <Col span={focus === 'detail' ? 20 : 14} className="admin-container" style={{backgroundColor: color.background}}>
                 <Row style={{marginBottom: "20px"}}>
@@ -75,8 +75,11 @@ const AdminProgress = () => {
                     <Col span={10}>
                         <SearchInput onChange={(event) => changeSearchKey(event.target.value)} />
                     </Col>
-                    <Col span={3}><Button className="admin-header-button disabled">Export</Button></Col>
-                    <Col span={3}><Button className="admin-header-button" style={{background: color.main}}>+ Add</Button></Col>
+                    <Col span={3}></Col>
+                    <Col span={3}>
+                        <Button className="admin-header-button disabled">Export</Button>
+                        {/* <Button className="admin-header-button" style={{background: color.main}}>+ Add</Button> */}
+                    </Col>
                     <Col span={2}></Col>
                 </Row>
                 <Row>
@@ -84,24 +87,24 @@ const AdminProgress = () => {
                     </Col>
                     <Col span={20}>
                         <div style={{backgroundColor:'white', borderRadius:'8px'}}>
-                            <Row style={{marginBottom: "20px", paddingTop:'20px'}}>
+                             {/* <Row style={{marginBottom: "20px", paddingTop:'20px'}}>
                                 <Col span={1}></Col>
                                 <Col span={16} className="admin-process-button-div">
-                                    <Button className="admin-header-button" style={{background: "#498be8a1"}}>Filter 1</Button>
+                                     <Button className="admin-header-button" style={{background: "#498be8a1"}}>Filter 1</Button>
                                     <Button className="admin-header-button" style={{background: "#498be8a1", marginLeft: "20px"}}>Filter 2</Button>
-                                    <Button className="admin-header-button" style={{background: "#498be8a1", marginLeft: "20px"}}>Other</Button>
+                                    <Button className="admin-header-button" style={{background: "#498be8a1", marginLeft: "20px"}}>Other</Button> 
                                 </Col>
                                 <Col span={4}></Col>
                                 <Col span={2} className="admin-process-button-div-right">
-                                    <div >
+                                     <div >
                                         <AppstoreFilled style={{color: color.main, border: (focus === "detail") ? "2px solid "+color.main : "1px solid "+color.main, borderRadius: "4px", padding: (focus === "detail") ? "2px" : "3px", opacity: (focus === "detail") ? 1 : 0.7}} />
                                     </div>
                                     <div >
                                         <MenuOutlined style={{color: color.main, border: (focus === "list") ? "2px solid "+color.main : "1px solid "+color.main, borderRadius: "4px", padding: (focus === "list") ? "2px" : "3px", opacity: (focus === "list") ? 1 : 0.7}} />
-                                    </div>
-                                </Col>
+                                    </div> 
+                                </Col> 
                                 <Col span={1}></Col>
-                            </Row>
+                            </Row>  */}
                             <Row>
                                 <Col span={1}></Col>
                                 <Col span={22}>

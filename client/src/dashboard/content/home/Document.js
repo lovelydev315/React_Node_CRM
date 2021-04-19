@@ -95,11 +95,11 @@ const Document = (props) => {
                         <SearchInput />
                     </Col>
                     <Col span={6}>
-                        <Button style={{background: color.main, color: "white", borderRadius: "5px", border: "none", lineHeight: "25px"}} onClick={()=>setAddModalVisible(true)}>+ Add</Button>
+                        
                         </Col>
                     <Col span={10}>
                         <div style={{width:'50px',float:'right'}}>
-                            <Row>
+                            {/* <Row>
                                 <Col span={12} className="user-document-grid-list-btn active" style={{color:color.main, borderColor:color.main}} >
                                     <AppstoreOutlined/>
                                     
@@ -107,7 +107,8 @@ const Document = (props) => {
                                 <Col  span={12} className="user-document-grid-list-btn" style={{color:color.main, borderColor:color.main}} >
                                     <MenuOutlined/>
                                 </Col>
-                            </Row>
+                            </Row> */}
+                            <Button style={{background: color.main, color: "white", borderRadius: "5px", border: "none", lineHeight: "25px"}} onClick={()=>setAddModalVisible(true)}>+ Add</Button>
                         </div>
                     </Col>
                     <Col span={1}></Col>

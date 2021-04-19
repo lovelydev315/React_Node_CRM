@@ -24,14 +24,14 @@ const UserProfile = (props) => {
             <h1 className="user-profile-name-container">{userInfo.name}</h1>
             <h5 className = "user-profile-email-container" style={{backgroundColor: color.background}}>{userInfo.email} | {userInfo.mobile_phone}</h5>
             <div className= "user-profile-toolbar-container"></div>
-            <Row>
+            {/* <Row>
                 <Col span={12} style={{padding: "10px"}}>
                     <Button className="light-btn" style={{backgroundColor: color.light}}>Edit</Button>
                 </Col>
                 <Col span={12} style={{padding: "10px"}}>
                     <Button className="light-btn" style={{backgroundColor: color.light}}>Document</Button>
                 </Col>
-            </Row>
+            </Row> */}
             <div style={{marginTop:'10px', padding:'0px 20px'}}>
                 {userInfo.phases.length && userInfo.phases.map((each, index) => (
                     <Phase key={"credit"+index} phase={each} user_state={userInfo.user_state} state="in complete" number={index + 1} />
