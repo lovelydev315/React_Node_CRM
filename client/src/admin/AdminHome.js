@@ -7,6 +7,7 @@ import placeholder from './user_icon.png';
 import Sidebar from '../sidebar/Sidebar';
 import ProgressCard from './ProgressCard';
 import DocumentRow from './DocumentRow';
+import InformationSidebar from './InformationSidebar';
 
 import { getFolder } from '../action/documentAction';
 import { isAuth, getUsers, register } from '../action/authAction';
@@ -55,6 +56,8 @@ const AdminHome = () => {
     const [country, setCountry] = useState("");
     const [_state, set_state] = useState("");
     const [avatar, setAvatar] = useState(src);
+    const [ info, setInfo ] = useState(-1);
+    const [ selected, setSelected ] = useState({});
 
     const [ expand, setExpand ] = useState(-1);
     const [ folders, setFolders ] = useState([]);
@@ -127,6 +130,24 @@ const AdminHome = () => {
         })
     }
 
+    function changeUserInfo(newUserState) {
+        console.log(newUserState);
+        const changedUsers = [...users];
+        changedUsers.map((each) => {
+            if(each._id === selected._id) {
+                each.user_state = newUserState;
+            }
+        });
+        console.log(changedUsers);
+        setUsers(changedUsers);
+    }
+
+    function progressClickHandler(item,index) {
+        setInfo(index);
+        setSelected(item);
+        
+    }
+
     const changeSearchKey = (value) => {
         setSearchKey(value.target.value);
     }
@@ -143,7 +164,7 @@ const AdminHome = () => {
                 <Col span={4} style={{paddingLeft: "20px"}}>
                     <Sidebar authority={authority} selected="1"/>
                 </Col>
-                <Col span={20} className="admin-container" style={{backgroundColor: color.background}}>
+                <Col span={info === -1 ? 20 : 14} className="admin-container" style={{backgroundColor: color.background}}>
                     <Row style={{marginBottom: "20px"}}>
                         <Col span={2}></Col>
                         <Col span={4}><h1 className="admin-title">Dashboard</h1></Col>
@@ -151,7 +172,7 @@ const AdminHome = () => {
                             <SearchInput onChange={changeSearchKey}/>
                         </Col>
                         <Col span={3}>
-                            <Button className="admin-header-button disabled">Export</Button>
+                            {/* <Button className="admin-header-button disabled">Export</Button> */}
                         </Col>
                         <Col span={3}>
                             {/* <Button className="admin-header-button disabled">Export</Button> */}
@@ -168,7 +189,7 @@ const AdminHome = () => {
                                     {
                                         filter_users.map((item, index)=>(
                                             index < 4 &&
-                                            <Col sm={6} xs={12} key={index}>
+                                            <Col sm={6} xs={12} key={index} onClick={()=>progressClickHandler(item,index)}>
                                                 <ProgressCard key={index} index={index+1} userInfo={item}  />
                                             </Col>
                                         ))
@@ -201,6 +222,9 @@ const AdminHome = () => {
                         </Col>
                         <Col span={2}></Col>
                     </Row>
+                </Col>
+                <Col span={info === -1 ? 0 : 6}>
+                    <InformationSidebar userInfo={users[info]} setUnVisible={()=>setInfo(-1)} onChange={(newUserState)=>changeUserInfo(newUserState)}/>
                 </Col>
                 <Modal className="user-upload-modal"
                 title="Add Customer."

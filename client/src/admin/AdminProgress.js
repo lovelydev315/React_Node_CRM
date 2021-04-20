@@ -87,7 +87,7 @@ const AdminProgress = () => {
                     </Col>
                     <Col span={3}></Col>
                     <Col span={3}>
-                        <Button className="admin-header-button disabled">Export</Button>
+                        {/* <Button className="admin-header-button disabled">Export</Button> */}
                         {/* <Button className="admin-header-button" style={{background: color.main}}>+ Add</Button> */}
                     </Col>
                     <Col span={2}></Col>
