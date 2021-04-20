@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {Col, Row, Input, Button } from 'antd';
+import {Col, Row, Button, message } from 'antd';
+import {useHistory} from 'react-router-dom';
 
 import Sidebar from '../sidebar/Sidebar';
 import ProgressCard from './ProgressCard';
@@ -14,15 +15,25 @@ import AdminSubHeader from './AdminSubHeader.js';
 import './admin.css';
 
 const AdminHome = () => {
+    let history = useHistory();
     const [ expand, setExpand ] = useState(-1);
     const [ folders, setFolders ] = useState([]);
     const [ authority, setAuthority ] = useState('');
     const [users, setUsers] = useState([]);
     useEffect(() => {
         isAuth((res) => {
-            if(!res.err) setAuthority(res.data.authority);
-            //error
-            else alert(res.data);
+            if(!res.err) {
+                if (res.data.authority != "admin") {
+                    message.warn("You don't have permission to enter this page.")
+                    history.push('/');
+                    
+                }
+                else setAuthority(res.data.authority);
+            }
+            else {
+                message.warn("Unauthorized.")
+                history.push('/');
+            }
         });
         getUsers(function(res){
             console.log(res.data)
@@ -33,11 +44,6 @@ const AdminHome = () => {
             if(!res.err) setFolders(res.data);
             else alert(res.data);
         });
-        // getCredit(function(res){
-        //     if(!res.err) setCredits(res.data);
-        //     else alert(res.data);
-        //     console.log(res.data);
-        // });
     }, [])
     function toggleExpand(index) {
         if(index === expand) setExpand(-1);
@@ -46,7 +52,7 @@ const AdminHome = () => {
     return (
             <Row>
                 <Col span={4} style={{paddingLeft: "20px"}}>
-                    <Sidebar authority={authority} selected="1"/>
+                    <Sidebar authority={authority} />
                 </Col>
                 <Col span={20} className="admin-container" style={{backgroundColor: color.background}}>
                     <Row style={{marginBottom: "20px"}}>
@@ -55,13 +61,8 @@ const AdminHome = () => {
                         <Col span={10}>
                             <SearchInput />
                         </Col>
-                        <Col span={3}>
-                            {/* <Button className="admin-header-button disabled">Export</Button> */}
-                        </Col>
-                        <Col span={3}>
-                            <Button className="admin-header-button disabled">Export</Button>
-                            {/* <Button className="admin-header-button" style={{background: color.main}}>+ Add</Button> */}
-                        </Col>
+                        <Col span={3}><Button className="admin-header-button disabled">Export</Button></Col>
+                        <Col span={3}><Button className="admin-header-button" style={{background: color.main}}>+ Add</Button></Col>
                         <Col span={2}></Col>
                     </Row>
                     <Row>

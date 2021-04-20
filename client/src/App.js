@@ -31,9 +31,6 @@ function App() {
           <Route exact path="/logout">
             <Logout />
           </Route>
-          <Route exact path="/logout">
-            <Logout />
-          </Route>
           <Route exact path="/customer/dashboard">
             <Dashboard />
           </Route>

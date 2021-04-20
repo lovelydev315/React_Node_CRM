@@ -19,7 +19,7 @@ const InformationSidebar = (props) => {
     }
     return (
         <div>
-            <button onClick={setUnvisible} className="circle-return-btn" style={{backgroundColor: color.background, color: color.main, fontWeight: "bolder", fontFamily: "monospace"}}>&gt;</button>
+            <button onClick={setUnvisible} className="circle-return-btn" style={{backgroundColor: color.background, color: color.main, fontWeight: "bolder", fontFamily: "monospace"}}>&lt;</button>
             <button onClick={setUnvisible} className="circle-detail-btn" style={{backgroundColor: color.background, color: color.main, fontWeight: "bolder", fontFamily: "monospace"}}><MoreOutlined style={{fontSize: "16px", fontWeight: "900"}} /></button>
             <div style={{padding: "15% 15% 4% 15%"}}>
                 <div className="progress-card-avatar">
@@ -31,7 +31,7 @@ const InformationSidebar = (props) => {
             <p className="admin-information-card-email" style={{backgroundColor: color.background, padding:'0px 20px'}} >{userInfo.email + ' | ' + userInfo.mobile_phone}</p>
             <div style={{display: "flex", justifyContent: "space-around", padding: "10px 5%"}}>
                 <Button className="admin-header-button" style={{background: "#498be8a1"}} onClick={()=>setVisible(true)}>Edit</Button>
-                {/* <Button className="admin-header-button" style={{background: "#498be8a1", marginLeft: "20px"}}>Documents</Button> */}
+                <Button className="admin-header-button" style={{background: "#498be8a1", marginLeft: "20px"}}>Documents</Button>
             </div>
             <div style={{padding:'0px 30px'}}>
                 {userInfo && Array.isArray(userInfo.phases) && userInfo.phases.length && userInfo.phases.map((each, index) => (

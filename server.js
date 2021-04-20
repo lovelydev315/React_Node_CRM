@@ -71,6 +71,8 @@ app.use(
 
 
 router.get("/", (req, res) => res.send("HELLO FRIEND"));
+router.get("/api/logout", logout);
+app.use("/api/logout", require('./routes/logout'));
 
 // API / Routes;
 // Uncomment Below for Development

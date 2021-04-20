@@ -1,23 +1,24 @@
 import React, {useState, useEffect} from 'react';
-import {Col, Row, Input, Button } from 'antd';
+import {Col, Row,  Button, message } from 'antd';
+import { useHistory } from 'react-router-dom';
+import { AppstoreFilled, MenuOutlined } from '@ant-design/icons';
 
 import Sidebar from '../sidebar/Sidebar';
-import ProgressCard from './ProgressCard';
 import DocumentRow from './DocumentRow';
-import Phase from '../dashboard/content/home/Phase';
 import DocumentSidebar from './DocumentSidebar';
 import DocumentCard from './DocumentCard';
+import SearchInput from './SearchInput.js';
+
 
 import { getFolder } from '../action/documentAction';
 import { isAuth, getUsers } from '../action/authAction';
 import { color } from '../config/config';
-import SearchInput from './SearchInput.js';
-import InformationSidebar from './InformationSidebar.js';
-import { AppstoreFilled, MenuOutlined } from '@ant-design/icons';
 
 import './admin.css';
 
+
 const AdminDocument = () => {
+    let history = useHistory();
     const [ detail, setDetail ] = useState(false);
     const [ authority, setAuthority ] = useState('');
     const [ info, setInfo ] = useState(-1);
@@ -32,9 +33,18 @@ const AdminDocument = () => {
     }
     useEffect(() => {
         isAuth((res) => {
-            if(!res.err) setAuthority(res.data.authority);
-            //error
-            else alert(res.data);
+            if(!res.err) {
+                if (res.data.authority != "admin") {
+                    message.warn("You don't have permission to enter this page.")
+                    history.push('/');
+                    
+                }
+                else setAuthority(res.data.authority);
+            }
+            else {
+                message.warn("Unauthorized.")
+                history.push('/');
+            }
         });
         getUsers(function(res){
             setUsers(res.data);
@@ -45,7 +55,6 @@ const AdminDocument = () => {
             else alert(res.data);
             console.log(res.data);
         })
-        
     }, [])
     const changeSearchKey = (value) => {
             setSearchKey(value);
@@ -61,7 +70,7 @@ const AdminDocument = () => {
     return (
         <Row>
             <Col span={4} style={{paddingLeft: "20px"}}>
-                <Sidebar authority={authority} selected="3" />
+                <Sidebar authority={authority} />
             </Col>
             <Col span={info === -1 ? 20 : 14} className="admin-container" style={{backgroundColor: color.background}}>
                 <Row style={{marginBottom: "20px"}}>
@@ -70,11 +79,8 @@ const AdminDocument = () => {
                     <Col span={10}>
                         <SearchInput onChange={(event) => changeSearchKey(event.target.value)} />
                     </Col>
-                    <Col span={3}></Col>
-                    <Col span={3}>
-                        <Button className="admin-header-button disabled">Export</Button>
-                        {/* <Button className="admin-header-button" style={{background: color.main}}>+ Add</Button> */}
-                    </Col>
+                    <Col span={3}><Button className="admin-header-button disabled">Export</Button></Col>
+                    <Col span={3}><Button className="admin-header-button" style={{background: color.main}}>+ Add</Button></Col>
                     <Col span={2}></Col>
                 </Row>
                 <Row>
@@ -85,9 +91,9 @@ const AdminDocument = () => {
                             <Row style={{marginBottom: "20px", paddingTop:'20px'}}>
                                 <Col span={1}></Col>
                                 <Col span={16} className="admin-process-button-div">
-                                    {/* <Button className="admin-header-button" style={{background: "#498be8a1"}}>Filter 1</Button>
+                                    <Button className="admin-header-button" style={{background: "#498be8a1"}}>Filter 1</Button>
                                     <Button className="admin-header-button" style={{background: "#498be8a1", marginLeft: "20px"}}>Filter 2</Button>
-                                    <Button className="admin-header-button" style={{background: "#498be8a1", marginLeft: "20px"}}>Other</Button> */}
+                                    <Button className="admin-header-button" style={{background: "#498be8a1", marginLeft: "20px"}}>Other</Button>
                                 </Col>
                                 <Col span={4}></Col>
                                 <Col span={2} className="admin-process-button-div-right">
@@ -104,10 +110,10 @@ const AdminDocument = () => {
                                 <Col span={1}></Col>
                                 <Col span={22}>
                                 {
-                                    !detail ? users.map((item, index)=>(
+                                    !detail ? filter_users.map((item, index)=>(
                                         <DocumentRow key={index} name={item.name}  folders={folders.map(each => {if(each.user_id === item._id) return each})} name={item.name} alter="Jeff Baker" date={item.created_at.substring(0,10) + " " + item.created_at.substring(11,16)} state={item.user_state} phase={item.phases[item.user_state.phase]} avatar={item.avatar} margin="5px" index={index} expand={expand} toggleExpand={toggleExpand} setInfo={setInfo} />
                                     )) : <div style={{display: "flex", flexFlow: "wrap", justifyContent: "space-around"}}>
-                                        {users.map((item, index)=>(
+                                        {filter_users.map((item, index)=>(
                                             <div style={{flex: "0 0 50px", width: "300px", margin: "10px"}} key={index}>
                                                 <DocumentCard userInfo={item} index={index} setInfo={setInfo} />
                                             </div>

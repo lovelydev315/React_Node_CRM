@@ -13,7 +13,7 @@ export const isAuth = (cb)  => {
       });
 }
 
-export const register = (body) => {
+export const register = (body, cb) => {
   console.log(body);
   const headers = {
     headers: {
@@ -23,7 +23,7 @@ export const register = (body) => {
 
   instance.post("/api/customer/register", body, headers)
     .then((res) =>{
-      console.log(res);
+      return cb(res);
     })
     .catch((err) => {
       console.log(err);
@@ -67,7 +67,7 @@ export const login =  ({ email, password, type }, cb) => {
 
 export const logout = (cb) => {
   
-    instance.delete("/api/logout", { withCredentials: true })
+  instance.get("/api/logout/logout", { withCredentials: true })
     .then((res) =>{
       return cb(res);
     })

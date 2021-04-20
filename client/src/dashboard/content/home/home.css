@@ -27,7 +27,7 @@
 }
 
 .user-document-container {
-    
+    height:100%;
     margin-left:20px;
     min-height:90vh;
     border-radius:8px;

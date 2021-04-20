@@ -1,9 +1,4 @@
-import React, {useEffect,useState} from 'react';
-import {Row, Col} from 'antd';
-
-
-
-  
+import React  from 'react';
 
 const Step = (props) => {
     const current = props.current;
@@ -25,18 +20,6 @@ const Step = (props) => {
         if(i === length - 1)style.borderRadius = "0px 9999px 9999px 0px";
         steps.push(<div key={i} style={style}></div>)
     }
-    // useEffect(() => {
-    //     for (i = 0; i < 10; i++) {
-    //         if ( i == props.current-1) {
-    //             buffer.push(<Col key={i} style={{border:'2px solid white', borderRadius:'5px', backgroundColor:'red',height:'10px'}} span={2}></Col>);
-    //         }else if(i<props.current-1) {
-    //             buffer.push(<Col key={i} style={{border:'2px solid white', borderRadius:'5px', backgroundColor:'white',height:'10px'}} span={2}></Col>);
-    //         }else {
-    //             buffer.push(<Col key={i} style={{border:'2px solid white', borderRadius:'5px', backgroundColor:'transparent',height:'10px'}} span={2}></Col>);  
-    //         }
-    //     }
-    //     setSteps(buffer);
-    // },[]);
     return (
         <div className="progress-card-status-bar" style={{height: height, border: "2px solid "+color, marginTop: marginTop}}>
             {steps}

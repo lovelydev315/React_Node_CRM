@@ -72,7 +72,15 @@ const Register = () => {
         formData.append("state", _state);
         formData.append("avatar", avatar);
 
-        if (register(formData)) history.push('/login');
+        register(formData, function(res){
+            console.log("suffessfully ")
+            if (res.data == "Successfully Registered") {
+                console.log("successfully")
+                message.info("Successfully Registered")
+                history.push('/');
+            }
+        })
+
     }
 
     return (

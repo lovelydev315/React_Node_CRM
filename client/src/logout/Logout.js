@@ -7,6 +7,7 @@ const Logout = (props) => {
     useEffect(()=>{
         logout(function(res){
             if(!res.err) {
+                console.log(res);
                 history.push('/');
             }
             else {

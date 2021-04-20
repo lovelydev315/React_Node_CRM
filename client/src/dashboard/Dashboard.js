@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {useHistory} from 'react-router-dom';
-import {Col, Row } from 'antd';
+import {Col, Row, message } from 'antd';
 import Sidebar from '../sidebar/Sidebar';
 import HomeUser from './content/home/HomeUser';
 import { getUserInfo } from '../action/authAction';
@@ -17,20 +17,17 @@ const Dashboard = () => {
 
     useEffect(() => {
         isAuth((res) => {
-            console.log(res);
             if(!res.err) {
                 setAuthority(res.data.authority);
                 setUserInfo(res.data.customer);
             }
-            //error
             else {
+                message.warn("you are unauthorized", 3);
                 history.push('/');
             }
         });
         getUserInfo(function(res){
             if(!res.err) setUserInfo(res.data);
-            else alert(res.data);
-            console.log(res.data);
         });
     }, [])
   
@@ -44,7 +41,7 @@ const Dashboard = () => {
                         <Col span={2}></Col>
                         <Col span={4}><h1 className="admin-title">Documents</h1></Col>
                         <Col span={10}>
-                            {/* <SearchInput /> */}
+                            <SearchInput />
                         </Col>
                         <Col span={8}></Col>
                     </Row>
