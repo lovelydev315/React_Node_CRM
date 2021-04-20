@@ -19,10 +19,10 @@ const ProgressCard = (props) => {
     return (
         <div className="admin-progress-card-container" style={{backgroundColor: color.background}}>
             <div className="progress-card-container" >
-                <div className="progress-card-toolbar">
+                {/* <div className="progress-card-toolbar">
                     <CloseOutlined className="progress-card-cross" style={{color: color.main}} />
                     <MoreOutlined className="progress-card-more" style={{color: color.main}} />
-                </div>
+                </div> */}
                 <div className="progress-card-avatar">
                     <div className="square"  style={{background: "url('/"+props.userInfo.avatar+"')",backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat", }}>
                        
