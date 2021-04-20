@@ -80,7 +80,6 @@ const Register = () => {
                 history.push('/');
             }
         })
-
     }
 
     return (

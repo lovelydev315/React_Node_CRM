@@ -1,9 +1,10 @@
 import React, {useState} from "react";
-import { Input, Row, Col, Upload, message, Button} from 'antd';
-import { FileAddOutlined, MoreOutlined} from '@ant-design/icons';
+import {Progress, Input, Row, Col, Upload, message, Button} from 'antd';
+import {CloseOutlined, FileAddOutlined, MoreOutlined} from '@ant-design/icons';
+import ImgPrev from './ImgPrev';
 import { color } from '../config/config';
 import "./admin.css"
-import { uploadDocument } from '../action/documentAction';
+import {getFolder, createNewFolder, uploadDocument } from '../action/documentAction';
 
 const { Dragger } = Upload;
 
@@ -27,7 +28,7 @@ const DocumentSidebar = (props) => {
     }
     return (
         <div>
-            <button onClick={setUnvisible} className="circle-return-btn" style={{backgroundColor: color.background, color: color.main, fontWeight: "bolder", fontFamily: "monospace"}}>&lt;</button>
+            <button onClick={setUnvisible} className="circle-return-btn" style={{backgroundColor: color.background, color: color.main, fontWeight: "bolder", fontFamily: "monospace"}}>&gt;</button>
             <button onClick={setUnvisible} className="circle-detail-btn" style={{backgroundColor: color.background, color: color.main, fontWeight: "bolder", fontFamily: "monospace"}}><MoreOutlined style={{fontSize: "16px", fontWeight: "900"}} /></button>
             <div style={{padding: "15% 15% 4% 15%"}}>
                 <div className="progress-card-avatar">

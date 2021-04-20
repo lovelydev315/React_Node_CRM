@@ -128,6 +128,10 @@ exports.loginAdmin = (req, res) => {
         res.json(sessAdmin); // sends cookie with sessionID automatically in response
       });
     });
+  // } else {
+  //   console.log(result.error)
+  //   res.status(422).json(result.error.details[0].message);
+  // }
 };
 
 exports.logout = (req, res) => {

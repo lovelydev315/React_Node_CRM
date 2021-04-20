@@ -67,7 +67,7 @@ export const login =  ({ email, password, type }, cb) => {
 
 export const logout = (cb) => {
   
-  instance.get("/api/logout/logout", { withCredentials: true })
+    instance.get("/api/logout/logout", { withCredentials: true })
     .then((res) =>{
       return cb(res);
     })

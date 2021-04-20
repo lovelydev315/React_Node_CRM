@@ -28,6 +28,8 @@ const Dashboard = () => {
         });
         getUserInfo(function(res){
             if(!res.err) setUserInfo(res.data);
+            
+            console.log(res.data);
         });
     }, [])
   
@@ -41,7 +43,7 @@ const Dashboard = () => {
                         <Col span={2}></Col>
                         <Col span={4}><h1 className="admin-title">Documents</h1></Col>
                         <Col span={10}>
-                            <SearchInput />
+                            {/* <SearchInput /> */}
                         </Col>
                         <Col span={8}></Col>
                     </Row>

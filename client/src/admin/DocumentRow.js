@@ -46,15 +46,16 @@ const DocumentRow = (props) => {
                     <div style={{marginBottom:'0px', fontWeight: "bold", lineHeight:'2.0'}}>{Math.round(state.stage * 100 / phase.stages.length)+"% | "+phase.name}</div>
                 </Col>
                 <Col span={6} style={{display:'flex', justifyContent: "flex-end", paddingTop:'2px'}}>
-                    <Button  size='small' style={{width: "80px", marginRight: "30px", borderRadius: "5px"}}>+ Add</Button>
-                    <Button size='small' style={{width: "80px", marginRight: "30px", borderRadius: "5px", backgroundColor: color.main, color: "white"}} onClick={setInfo}>Edit</Button>
+                    {/* <Button  size='small' style={{width: "80px", marginRight: "30px", borderRadius: "5px"}}>+ Add</Button> */}
+                    {props.editVisible==true && <Button size='small' style={{width: "80px", marginRight: "30px", borderRadius: "5px", backgroundColor: color.main, color: "white"}} onClick={setInfo}>Edit</Button>}
+                    
                 </Col>
             </Row>
             <Row className="document-row-detail" style = {expand !== index && {display: "none"}}>
-                <Col span={24} className="document-row-detail-header">
+                {/* <Col span={24} className="document-row-detail-header">
                     <UpOutlined className="document-row-detail-header-toggle" style={{color: color.main}} />
                     <input type="text" className="document-row-detail-header-search" style={{color: color.main}} />
-                </Col>
+                </Col> */}
                 {folders && folders.length && folders.map(each => {
                     return each && each.file_array.map((eachFile, index) => (
                         <Col span={4} style={{padding: "20px"}} key={"file"+index}>
@@ -63,9 +64,9 @@ const DocumentRow = (props) => {
                                     <FolderOutlined style={{color: color.main, fontSize: "40px"}} />
                                     <span>{each.folder_name}</span>
                                 </div>
-                                <div style={{display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column"}}>
+                                <div style={{display: "flex", justifyContent: "center", flexDirection: "column", whiteSpace:'nowrap', textOverflow:'ellipsis', overflow:'hidden'}}>
                                     <FileOutlined style={{color: color.main, fontSize: "30px", margin: "5px 0"}} />
-                                    <span>{eachFile.name}</span>
+                                    <span style={{ whiteSpace:'nowrap', textOverflow:'ellipsis', overflow:'hidden'}}>{eachFile.name}</span>
                                 </div>
                             </a>
                         </Col>

@@ -13,7 +13,7 @@ const ProgressCard = (props) => {
         if(props.setInfo) props.setInfo(index);
     }
     return (
-        <div className="admin-progress-card-container" style={{backgroundColor: color.background}}>
+        <div className="admin-progress-card-container" style={{backgroundColor: color.background}} onClick={setInfo}>
             <div className="progress-card-container" >
                 <div className="progress-card-toolbar">
                     <CloseOutlined className="progress-card-cross" style={{color: color.main}} />
@@ -27,8 +27,8 @@ const ProgressCard = (props) => {
                 <p className="progress-card-name" >{userInfo.name}</p>
                 <p className="progress-card-email" >{userInfo.email + ' | ' + userInfo.mobile_phone}</p>
                 <div style={{display:'flex', justifyContent: "center", paddingTop:'2px'}}>
-                    <Button  size='small' style={{width: "80px", marginRight: "30px", borderRadius: "5px"}}>+ Add</Button>
-                    <Button size='small' style={{width: "80px", marginRight: "30px", borderRadius: "5px", backgroundColor: color.main, color: "white"}} onClick={setInfo}>Edit</Button>
+                    {/* <Button  size='small' style={{width: "80px", marginRight: "30px", borderRadius: "5px"}}>+ Add</Button> */}
+                    {/* <Button size='small' style={{width: "120px", borderRadius: "5px", backgroundColor: color.main, color: "white"}} onClick={setInfo}>Edit</Button> */}
                 </div>
             </div>
         </div>

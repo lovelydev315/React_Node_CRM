@@ -20,19 +20,22 @@ const Document = (props) => {
             if(!res.err) {
                 setFolders(res.data);
             }
-            
-            
         });
     }, []);
     
-    const filter = (searchKey) => {
-        // folders[0].file_array().filter(each => each.name.indexOf(searchKey) !== -1)
-        // folders[1].file_array().filter(each => each.name.indexOf(searchKey) !== -1)
-        let arr= folders;
-        arr[0].file_array.filter(each => each.name.indexOf(searchKey) !== -1);
-        arr[1].file_array.filter(each => each.name.indexOf(searchKey) !== -1);
-        console.log(arr);
-        return arr;
+    const filter = (search) => {
+        let searchKey = search.target.value;
+        let folder_buf = JSON.parse(JSON.stringify(folders));
+        let arr_buf = [];
+        for (let j = 0 ; j < folder_buf.length ; j++){
+            arr_buf=[];
+            for (let i = 0 ; i<folder_buf[j].file_array.length ; i++) {
+                if (folder_buf[j].file_array[i].name.includes(searchKey)) arr_buf.push(folder_buf[j].file_array[i]);
+            }
+            folder_buf[j].file_array = arr_buf;
+        }
+        
+        return folder_buf;
     }
 
     const addNewFolder = () => {
@@ -86,7 +89,7 @@ const Document = (props) => {
 
 
     let filter_folders;
-    if (searchKey) filter_folders = filter(searchKey);
+    if (searchKey!="") filter_folders = filter(searchKey);
     else filter_folders = folders;
 
     return (
@@ -98,14 +101,14 @@ const Document = (props) => {
                 <Row style={{marginTop:'20px', display: "flex", alignItems: "center "}}>
                     <Col span={1}></Col>
                     <Col span={6}>
-                        <SearchInput onChange={(e)=>changeSearchKey(e.target.value)} />
+                        <SearchInput onChange={changeSearchKey} />
                     </Col>
                     <Col span={6}>
-                        <Button style={{background: color.main, color: "white", borderRadius: "5px", border: "none", lineHeight: "25px"}} onClick={()=>setAddModalVisible(true)}>+ Add</Button>
+                        
                         </Col>
                     <Col span={10}>
                         <div style={{width:'50px',float:'right'}}>
-                            <Row>
+                            {/* <Row>
                                 <Col span={12} className="user-document-grid-list-btn active" style={{color:color.main, borderColor:color.main}} >
                                     <AppstoreOutlined/>
                                     
@@ -113,12 +116,13 @@ const Document = (props) => {
                                 <Col  span={12} className="user-document-grid-list-btn" style={{color:color.main, borderColor:color.main}} >
                                     <MenuOutlined/>
                                 </Col>
-                            </Row>
+                            </Row> */}
+                            <Button style={{background: color.main, color: "white", borderRadius: "5px", border: "none", lineHeight: "25px"}} onClick={()=>setAddModalVisible(true)}>+ Add</Button>
                         </div>
                     </Col>
                     <Col span={1}></Col>
                 </Row>
-                <div style={{marginTop:'20px', paddingLeft:'10px', paddingRight:'10px'}}>
+                <div style={{marginTop:'20px'}}>
                     <Row className='user-document-file-table-header'>
                         <Col span={1}></Col>
                         <Col span={2}></Col>

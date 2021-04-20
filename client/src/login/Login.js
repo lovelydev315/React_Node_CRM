@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import { Form, Input, Button } from 'antd';
+import { Form, Input, InputNumber, Button, Divider } from 'antd';
 import {login} from '../action/authAction';
 import {useHistory} from 'react-router-dom';
 import './login.css';
